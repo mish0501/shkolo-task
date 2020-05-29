@@ -7,8 +7,11 @@ import AddButton from "./AddButton";
 class Cell extends Component {
     render() {
         let button = this.props.button;
+
+        let position = button.position ? ` order-${button.position}` : "";
+
         return (
-            <div className="col-12 col-sm-4 my-3 my-sm-0">
+            <div className={`col mb-3${position}`}>
                 <div className="card h-100">
                     <div className="card-body p-0">
                         {button.link ? (

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ReactDOM from "react-dom";
 
 class Button extends Component {
     render() {
@@ -7,10 +6,9 @@ class Button extends Component {
         return (
             <a
                 href={link}
-                className={`btn btn-block d-table button btn-${color}`}
-                role="button"
+                className={`btn btn-block button d-flex justify-content-center align-items-center btn-${color}`}
             >
-                <span className="d-table-cell align-middle h5">{title}</span>
+                <span className="h5">{title}</span>
             </a>
         );
     }
