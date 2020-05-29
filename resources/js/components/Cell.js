@@ -17,7 +17,7 @@ class Cell extends Component {
                         {button.link ? (
                             <Button button={button} />
                         ) : (
-                            <AddButton />
+                            <AddButton position={button.position} />
                         )}
                     </div>
                 </div>

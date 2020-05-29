@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 import Dashboard from "./Dashboard";
+import AddButtonForm from "./AddButtonForm";
 
 class App extends Component {
     render() {
@@ -13,6 +14,10 @@ class App extends Component {
                 </nav>
                 <div className="container">
                     <Switch>
+                        <Route
+                            path="/dashboard/button/add/:position"
+                            component={AddButtonForm}
+                        />
                         <Route path="/dashboard" component={Dashboard} />
                     </Switch>
                 </div>
