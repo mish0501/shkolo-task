@@ -69964,13 +69964,32 @@ var AddButtonForm = /*#__PURE__*/function (_Component) {
   }, {
     key: "handleSubmit",
     value: function handleSubmit(event) {
-      console.log(this.state);
+      var _this2 = this;
+
+      var _this$state = this.state,
+          color = _this$state.color,
+          title = _this$state.title,
+          link = _this$state.link;
+      var position = this.props.match.params.position;
       event.preventDefault();
+      axios.post("/api/dashboard", {
+        color: color,
+        title: title,
+        link: link,
+        position: position
+      }).then(function (_ref2) {
+        var data = _ref2.data;
+
+        if (data.type == "success") {
+          _this2.props.history.goBack();
+        }
+      }, function (error) {
+        console.error(error);
+      });
     }
   }, {
     key: "render",
     value: function render() {
-      var position = this.props.match.params.position;
       var colors = this.state.colors;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row justify-content-center"
@@ -70330,7 +70349,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
 
       axios.get("/api/dashboard").then(function (response) {
         _this2.setState({
-          buttons: JSON.parse(response.data)
+          buttons: response.data
         });
       });
     }

@@ -12,7 +12,7 @@ class Dashboard extends Component {
     componentDidMount() {
         axios.get("/api/dashboard").then(response => {
             this.setState({
-                buttons: JSON.parse(response.data)
+                buttons: response.data
             });
         });
     }

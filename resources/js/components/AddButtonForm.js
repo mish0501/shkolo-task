@@ -10,12 +10,12 @@ class AddButtonForm extends Component {
                 { value: "secondary", text: "dark gray" },
                 { value: "success", text: "green" },
                 { value: "danger", text: "red" },
-                { value: "warning", text: "yellow" },
+                { value: "warning", text: "yellow" }
             ],
 
             title: "",
             link: "",
-            color: "primary",
+            color: "primary"
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,18 +26,35 @@ class AddButtonForm extends Component {
         const { name, value } = target;
 
         this.setState({
-            [name]: value,
+            [name]: value
         });
     }
 
     handleSubmit(event) {
-        console.log(this.state);
+        const { color, title, link } = this.state;
+        let { position } = this.props.match.params;
         event.preventDefault();
+
+        axios
+            .post("/api/dashboard", {
+                color,
+                title,
+                link,
+                position
+            })
+            .then(
+                ({ data }) => {
+                    if (data.type == "success") {
+                        this.props.history.goBack();
+                    }
+                },
+                error => {
+                    console.error(error);
+                }
+            );
     }
 
     render() {
-        let { position } = this.props.match.params;
-
         let { colors } = this.state;
 
         return (
