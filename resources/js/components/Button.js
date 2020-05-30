@@ -13,7 +13,7 @@ class Button extends Component {
                     href={link}
                     className={`btn btn-block button d-flex justify-content-center align-items-center btn-${color}`}
                 >
-                    <span className="h5">{title}</span>
+                    <span className="h5 text-truncate">{title}</span>
                 </a>
 
                 <Link

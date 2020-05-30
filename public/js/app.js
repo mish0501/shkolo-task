@@ -80345,7 +80345,7 @@ var Button = /*#__PURE__*/function (_Component) {
         href: link,
         className: "btn btn-block button d-flex justify-content-center align-items-center btn-".concat(color)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-        className: "h5"
+        className: "h5 text-truncate"
       }, title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: {
           pathname: "/dashboard/button/edit/".concat(id)
