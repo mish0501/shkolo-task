@@ -3,8 +3,8 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Route, Switch, Redirect, Link } from "react-router-dom";
 
 import Dashboard from "./Dashboard";
-import AddButtonForm from "./AddButtonForm";
-import EditButtonForm from "./EditButtonForm";
+import CreateButton from "./CreateButton";
+import EditButton from "./EditButton";
 
 class App extends Component {
     componentWillMount() {
@@ -23,11 +23,11 @@ class App extends Component {
                     <Switch>
                         <Route
                             path="/dashboard/button/add/:position"
-                            component={AddButtonForm}
+                            component={CreateButton}
                         />
                         <Route
                             path="/dashboard/button/edit/:id"
-                            component={EditButtonForm}
+                            component={EditButton}
                         />
                         <Redirect exact from="/" to="/dashboard" />
                         <Route path="/dashboard" component={Dashboard} />

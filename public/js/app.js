@@ -79953,18 +79953,18 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var Button = /*#__PURE__*/function (_Component) {
-  _inherits(Button, _Component);
+var AddButton = /*#__PURE__*/function (_Component) {
+  _inherits(AddButton, _Component);
 
-  var _super = _createSuper(Button);
+  var _super = _createSuper(AddButton);
 
-  function Button() {
-    _classCallCheck(this, Button);
+  function AddButton() {
+    _classCallCheck(this, AddButton);
 
     return _super.apply(this, arguments);
   }
 
-  _createClass(Button, [{
+  _createClass(AddButton, [{
     key: "render",
     value: function render() {
       var position = this.props.position;
@@ -79979,214 +79979,10 @@ var Button = /*#__PURE__*/function (_Component) {
     }
   }]);
 
-  return Button;
+  return AddButton;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Button);
-
-/***/ }),
-
-/***/ "./resources/js/components/AddButtonForm.js":
-/*!**************************************************!*\
-  !*** ./resources/js/components/AddButtonForm.js ***!
-  \**************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Alert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Alert */ "./resources/js/components/Alert.js");
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
-
-function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
-
-function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
-
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
-
-
-
-
-var AddButtonForm = /*#__PURE__*/function (_Component) {
-  _inherits(AddButtonForm, _Component);
-
-  var _super = _createSuper(AddButtonForm);
-
-  function AddButtonForm() {
-    var _this;
-
-    _classCallCheck(this, AddButtonForm);
-
-    _this = _super.call(this);
-    _this.state = {
-      colors: [{
-        value: "primary",
-        text: "blue"
-      }, {
-        value: "secondary",
-        text: "dark gray"
-      }, {
-        value: "success",
-        text: "green"
-      }, {
-        value: "danger",
-        text: "red"
-      }, {
-        value: "info",
-        text: "light blue"
-      }],
-      title: "",
-      link: "",
-      color: "primary",
-      errors: []
-    };
-    _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
-    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    return _this;
-  }
-
-  _createClass(AddButtonForm, [{
-    key: "handleInputChange",
-    value: function handleInputChange(_ref) {
-      var target = _ref.target;
-      var name = target.name,
-          value = target.value;
-      this.setState(_defineProperty({}, name, value));
-    }
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit(event) {
-      var _this2 = this;
-
-      var _this$state = this.state,
-          color = _this$state.color,
-          title = _this$state.title,
-          link = _this$state.link;
-      var position = this.props.match.params.position;
-      event.preventDefault();
-      axios.post("/api/dashboard", {
-        color: color,
-        title: title,
-        link: link,
-        position: position
-      }).then(function (_ref2) {
-        var data = _ref2.data;
-
-        if (data.type == "success") {
-          _this2.props.history.replace({
-            pathname: "/dashboard",
-            state: {
-              alert: data
-            }
-          });
-        }
-      }, function (_ref3) {
-        var errorMsgs = _ref3.response.data.errors;
-        var errors = Object.keys(errorMsgs).map(function (key) {
-          return errorMsgs[key];
-        }).reduce(function (prev, curr) {
-          return prev.concat(curr);
-        }, []);
-
-        _this2.setState({
-          errors: errors
-        });
-      });
-    }
-  }, {
-    key: "render",
-    value: function render() {
-      var _this$state2 = this.state,
-          colors = _this$state2.colors,
-          errors = _this$state2.errors;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row justify-content-center"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-12 col-sm-8"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Alert__WEBPACK_IMPORTED_MODULE_1__["default"], {
-        msgs: errors,
-        type: "error"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-header"
-      }, "Add new button"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "title"
-      }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        className: "form-control",
-        id: "title",
-        name: "title",
-        value: this.state.title,
-        onChange: this.handleInputChange,
-        required: true
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "link"
-      }, "Link"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        className: "form-control",
-        id: "link",
-        name: "link",
-        value: this.state.link,
-        onChange: this.handleInputChange,
-        required: true
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "color"
-      }, "Color"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-        className: "form-control text-capitalize",
-        id: "color",
-        name: "color",
-        value: this.state.color,
-        onChange: this.handleInputChange,
-        required: true
-      }, colors.map(function (color, index) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: color.value,
-          key: index
-        }, color.text);
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
-        className: "btn btn-primary btn-block"
-      }, "Create"))))))));
-    }
-  }]);
-
-  return AddButtonForm;
-}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
-
-/* harmony default export */ __webpack_exports__["default"] = (AddButtonForm);
+/* harmony default export */ __webpack_exports__["default"] = (AddButton);
 
 /***/ }),
 
@@ -80283,8 +80079,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _Dashboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Dashboard */ "./resources/js/components/Dashboard.js");
-/* harmony import */ var _AddButtonForm__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./AddButtonForm */ "./resources/js/components/AddButtonForm.js");
-/* harmony import */ var _EditButtonForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditButtonForm */ "./resources/js/components/EditButtonForm.js");
+/* harmony import */ var _CreateButton__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./CreateButton */ "./resources/js/components/CreateButton.js");
+/* harmony import */ var _EditButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./EditButton */ "./resources/js/components/EditButton.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -80345,10 +80141,10 @@ var App = /*#__PURE__*/function (_Component) {
         className: "container"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/dashboard/button/add/:position",
-        component: _AddButtonForm__WEBPACK_IMPORTED_MODULE_4__["default"]
+        component: _CreateButton__WEBPACK_IMPORTED_MODULE_4__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
         path: "/dashboard/button/edit/:id",
-        component: _EditButtonForm__WEBPACK_IMPORTED_MODULE_5__["default"]
+        component: _EditButton__WEBPACK_IMPORTED_MODULE_5__["default"]
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Redirect"], {
         exact: true,
         from: "/",
@@ -80414,19 +80210,43 @@ var Button = /*#__PURE__*/function (_Component) {
   var _super = _createSuper(Button);
 
   function Button() {
+    var _this;
+
     _classCallCheck(this, Button);
 
-    return _super.apply(this, arguments);
+    _this = _super.call(this);
+    _this.handelDeleteClick = _this.handelDeleteClick.bind(_assertThisInitialized(_this));
+    return _this;
   }
 
   _createClass(Button, [{
+    key: "handelDeleteClick",
+    value: function handelDeleteClick() {
+      var _this2 = this;
+
+      var id = this.props.button.id;
+      axios["delete"]("/api/dashboard/".concat(id)).then(function (_ref) {
+        var data = _ref.data;
+
+        if (data.type == "success") {
+          _this2.props.history.push({
+            pathname: "/dashboard",
+            state: {
+              alert: data
+            }
+          });
+        }
+      }, function (error) {
+        console.error(error);
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
       var _this$props$button = this.props.button,
           title = _this$props$button.title,
           link = _this$props$button.link,
           color = _this$props$button.color,
-          position = _this$props$button.position,
           id = _this$props$button.id;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: link,
@@ -80438,9 +80258,17 @@ var Button = /*#__PURE__*/function (_Component) {
         to: {
           pathname: "/dashboard/button/edit/".concat(id)
         },
-        className: "menu btn btn-sm btn-".concat(color)
+        className: "menu menu-edit btn btn-sm btn-".concat(color)
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
         icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faPen"]
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        to: {
+          pathname: "/dashboard/button/edit/".concat(id)
+        },
+        className: "menu btn btn-sm btn-".concat(color),
+        onClick: this.handelDeleteClick
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__["FontAwesomeIcon"], {
+        icon: _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__["faTrashAlt"]
       })));
     }
   }]);
@@ -80448,14 +80276,14 @@ var Button = /*#__PURE__*/function (_Component) {
   return Button;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (Button);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Button));
 
 /***/ }),
 
-/***/ "./resources/js/components/Cell.js":
-/*!*****************************************!*\
-  !*** ./resources/js/components/Cell.js ***!
-  \*****************************************/
+/***/ "./resources/js/components/ButtonForm.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/ButtonForm.js ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80463,11 +80291,9 @@ var Button = /*#__PURE__*/function (_Component) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Button */ "./resources/js/components/Button.js");
-/* harmony import */ var _AddButton__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./AddButton */ "./resources/js/components/AddButton.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -80489,6 +80315,221 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Re
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
+
+
+var ButtonForm = /*#__PURE__*/function (_Component) {
+  _inherits(ButtonForm, _Component);
+
+  var _super = _createSuper(ButtonForm);
+
+  function ButtonForm() {
+    var _this;
+
+    _classCallCheck(this, ButtonForm);
+
+    _this = _super.call(this);
+    _this.state = {
+      colors: [{
+        value: "primary",
+        text: "blue"
+      }, {
+        value: "secondary",
+        text: "dark gray"
+      }, {
+        value: "success",
+        text: "green"
+      }, {
+        value: "danger",
+        text: "red"
+      }, {
+        value: "info",
+        text: "light blue"
+      }],
+      title: "",
+      link: "",
+      color: "primary",
+      position: 0,
+      id: 0,
+      errors: [],
+      isLoading: false
+    };
+    _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(ButtonForm, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var _this2 = this;
+
+      var _this$props = this.props,
+          id = _this$props.id,
+          position = _this$props.position;
+      console.log(id, position);
+
+      if (id) {
+        this.setState({
+          isLoading: true
+        });
+        axios.get("/api/dashboard/".concat(id)).then(function (_ref) {
+          var _ref$data = _ref.data,
+              title = _ref$data.title,
+              link = _ref$data.link,
+              color = _ref$data.color,
+              id = _ref$data.id,
+              position = _ref$data.position;
+
+          _this2.setState({
+            title: title,
+            link: link,
+            color: color,
+            id: id,
+            position: position,
+            isLoading: false
+          });
+        });
+      } else if (position) {
+        this.setState({
+          position: position
+        });
+      }
+    }
+  }, {
+    key: "handleInputChange",
+    value: function handleInputChange(_ref2) {
+      var target = _ref2.target;
+      var name = target.name,
+          value = target.value;
+      this.setState(_defineProperty({}, name, value));
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(event) {
+      event.preventDefault();
+
+      var button = function (_ref3) {
+        var color = _ref3.color,
+            title = _ref3.title,
+            link = _ref3.link,
+            id = _ref3.id,
+            position = _ref3.position;
+        return {
+          color: color,
+          title: title,
+          link: link,
+          id: id,
+          position: position
+        };
+      }(this.state);
+
+      this.props.handleSubmit(button);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var colors = this.state.colors;
+      var type = this.props.type;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-header"
+      }, type == "edit" && "Edit " || type == "add" && "Add a new ", "button"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "card-body"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        onSubmit: this.handleSubmit
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "title"
+      }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "form-control",
+        id: "title",
+        name: "title",
+        value: this.state.title,
+        onChange: this.handleInputChange,
+        required: true
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "link"
+      }, "Link"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        className: "form-control",
+        id: "link",
+        name: "link",
+        value: this.state.link,
+        onChange: this.handleInputChange,
+        required: true
+      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "form-group"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
+        htmlFor: "color"
+      }, "Color"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        className: "form-control text-capitalize",
+        id: "color",
+        name: "color",
+        value: this.state.color,
+        onChange: this.handleInputChange,
+        required: true
+      }, colors.map(function (color, index) {
+        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+          value: color.value,
+          key: index
+        }, color.text);
+      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-3"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        type: "submit",
+        className: "btn btn-primary btn-block"
+      }, type == "edit" && "Edit" || type == "add" && "Submit"))))));
+    }
+  }]);
+
+  return ButtonForm;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (ButtonForm);
+
+/***/ }),
+
+/***/ "./resources/js/components/Cell.js":
+/*!*****************************************!*\
+  !*** ./resources/js/components/Cell.js ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Button__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Button */ "./resources/js/components/Button.js");
+/* harmony import */ var _AddButton__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./AddButton */ "./resources/js/components/AddButton.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
 
 
 
@@ -80516,9 +80557,9 @@ var Cell = /*#__PURE__*/function (_Component) {
         className: "card h-100"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body p-0"
-      }, button.link ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      }, button.link ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
         button: button
-      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddButton__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      }) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_AddButton__WEBPACK_IMPORTED_MODULE_2__["default"], {
         position: button.position
       }))));
     }
@@ -80528,6 +80569,138 @@ var Cell = /*#__PURE__*/function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Cell);
+
+/***/ }),
+
+/***/ "./resources/js/components/CreateButton.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/CreateButton.js ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Alert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Alert */ "./resources/js/components/Alert.js");
+/* harmony import */ var _ButtonForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ButtonForm */ "./resources/js/components/ButtonForm.js");
+function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = Reflect.construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+
+
+
+
+var CreateButton = /*#__PURE__*/function (_Component) {
+  _inherits(CreateButton, _Component);
+
+  var _super = _createSuper(CreateButton);
+
+  function CreateButton() {
+    var _this;
+
+    _classCallCheck(this, CreateButton);
+
+    _this = _super.call(this);
+    _this.state = {
+      errors: []
+    };
+    _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
+    return _this;
+  }
+
+  _createClass(CreateButton, [{
+    key: "handleInputChange",
+    value: function handleInputChange(_ref) {
+      var target = _ref.target;
+      var name = target.name,
+          value = target.value;
+      this.setState(_defineProperty({}, name, value));
+    }
+  }, {
+    key: "handleSubmit",
+    value: function handleSubmit(_ref2) {
+      var _this2 = this;
+
+      var color = _ref2.color,
+          title = _ref2.title,
+          link = _ref2.link,
+          position = _ref2.position;
+      axios.post("/api/dashboard", {
+        color: color,
+        title: title,
+        link: link,
+        position: position
+      }).then(function (_ref3) {
+        var data = _ref3.data;
+
+        if (data.type == "success") {
+          _this2.props.history.replace({
+            pathname: "/dashboard",
+            state: {
+              alert: data
+            }
+          });
+        }
+      }, function (_ref4) {
+        var errorMsgs = _ref4.response.data.errors;
+        var errors = Object.keys(errorMsgs).map(function (key) {
+          return errorMsgs[key];
+        }).reduce(function (prev, curr) {
+          return prev.concat(curr);
+        }, []);
+
+        _this2.setState({
+          errors: errors
+        });
+      });
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var errors = this.state.errors;
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "row justify-content-center"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        className: "col-12 col-sm-8"
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Alert__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        msgs: errors,
+        type: "error"
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ButtonForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        handleSubmit: this.handleSubmit,
+        type: "add",
+        position: this.props.match.params.position
+      })));
+    }
+  }]);
+
+  return CreateButton;
+}(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+/* harmony default export */ __webpack_exports__["default"] = (CreateButton);
 
 /***/ }),
 
@@ -80629,10 +80802,10 @@ var Dashboard = /*#__PURE__*/function (_Component) {
 
 /***/ }),
 
-/***/ "./resources/js/components/EditButtonForm.js":
-/*!***************************************************!*\
-  !*** ./resources/js/components/EditButtonForm.js ***!
-  \***************************************************/
+/***/ "./resources/js/components/EditButton.js":
+/*!***********************************************!*\
+  !*** ./resources/js/components/EditButton.js ***!
+  \***********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -80641,9 +80814,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Alert__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Alert */ "./resources/js/components/Alert.js");
+/* harmony import */ var _ButtonForm__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ButtonForm */ "./resources/js/components/ButtonForm.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -80668,147 +80840,68 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
-var EditButtonForm = /*#__PURE__*/function (_Component) {
-  _inherits(EditButtonForm, _Component);
 
-  var _super = _createSuper(EditButtonForm);
+var EditButton = /*#__PURE__*/function (_Component) {
+  _inherits(EditButton, _Component);
 
-  function EditButtonForm() {
+  var _super = _createSuper(EditButton);
+
+  function EditButton() {
     var _this;
 
-    _classCallCheck(this, EditButtonForm);
+    _classCallCheck(this, EditButton);
 
     _this = _super.call(this);
     _this.state = {
-      colors: [{
-        value: "primary",
-        text: "blue"
-      }, {
-        value: "secondary",
-        text: "dark gray"
-      }, {
-        value: "success",
-        text: "green"
-      }, {
-        value: "danger",
-        text: "red"
-      }, {
-        value: "info",
-        text: "light blue"
-      }],
-      title: "",
-      link: "",
-      color: "primary",
-      position: 0,
-      id: 0,
       errors: []
     };
-    _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
-    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_this));
     return _this;
   }
 
-  _createClass(EditButtonForm, [{
-    key: "componentDidMount",
-    value: function componentDidMount() {
+  _createClass(EditButton, [{
+    key: "handleSubmit",
+    value: function handleSubmit(_ref) {
       var _this2 = this;
 
-      var id = this.props.match.params.id;
-      axios.get("/api/dashboard/".concat(id)).then(function (_ref) {
-        var _ref$data = _ref.data,
-            title = _ref$data.title,
-            link = _ref$data.link,
-            color = _ref$data.color,
-            id = _ref$data.id,
-            position = _ref$data.position;
-
-        _this2.setState({
-          title: title,
-          link: link,
-          color: color,
-          id: id,
-          position: position
-        });
-      });
-    }
-  }, {
-    key: "handleInputChange",
-    value: function handleInputChange(_ref2) {
-      var target = _ref2.target;
-      var name = target.name,
-          value = target.value;
-      this.setState(_defineProperty({}, name, value));
-    }
-  }, {
-    key: "handleSubmit",
-    value: function handleSubmit(event) {
-      var _this3 = this;
-
-      var _this$state = this.state,
-          color = _this$state.color,
-          title = _this$state.title,
-          link = _this$state.link,
-          position = _this$state.position,
-          id = _this$state.id;
-      event.preventDefault();
+      var color = _ref.color,
+          title = _ref.title,
+          link = _ref.link,
+          position = _ref.position,
+          id = _ref.id;
       axios.put("/api/dashboard/".concat(id), {
         color: color,
         title: title,
         link: link,
         position: position
-      }).then(function (_ref3) {
-        var data = _ref3.data;
+      }).then(function (_ref2) {
+        var data = _ref2.data;
 
         if (data.type == "success") {
-          _this3.props.history.push({
+          _this2.props.history.push({
             pathname: "/dashboard",
             state: {
               alert: data
             }
           });
         }
-      }, function (_ref4) {
-        var errorMsgs = _ref4.response.data.errors;
+      }, function (_ref3) {
+        var errorMsgs = _ref3.response.data.errors;
         var errors = Object.keys(errorMsgs).map(function (key) {
           return errorMsgs[key];
         }).reduce(function (prev, curr) {
           return prev.concat(curr);
         }, []);
 
-        _this3.setState({
+        _this2.setState({
           errors: errors
         });
       });
     }
   }, {
-    key: "handleDelete",
-    value: function handleDelete(event) {
-      var _this4 = this;
-
-      var id = this.state.id;
-      event.preventDefault();
-      axios["delete"]("/api/dashboard/".concat(id)).then(function (_ref5) {
-        var data = _ref5.data;
-
-        if (data.type == "success") {
-          _this4.props.history.replace({
-            pathname: "/dashboard",
-            state: {
-              alert: data
-            }
-          });
-        }
-      }, function (error) {
-        console.error(error);
-      });
-    }
-  }, {
     key: "render",
     value: function render() {
-      var _this$state2 = this.state,
-          colors = _this$state2.colors,
-          errors = _this$state2.errors;
+      var errors = this.state.errors;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row justify-content-center"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -80816,74 +80909,18 @@ var EditButtonForm = /*#__PURE__*/function (_Component) {
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Alert__WEBPACK_IMPORTED_MODULE_1__["default"], {
         msgs: errors,
         type: "error"
-      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-header"
-      }, "Edit button"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "card-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
-        onSubmit: this.handleSubmit
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "title"
-      }, "Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        className: "form-control",
-        id: "title",
-        name: "title",
-        value: this.state.title,
-        onChange: this.handleInputChange,
-        required: true
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "link"
-      }, "Link"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
-        className: "form-control",
-        id: "link",
-        name: "link",
-        value: this.state.link,
-        onChange: this.handleInputChange,
-        required: true
-      })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "form-group"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
-        htmlFor: "color"
-      }, "Color"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
-        className: "form-control text-capitalize",
-        id: "color",
-        name: "color",
-        value: this.state.color,
-        onChange: this.handleInputChange,
-        required: true
-      }, colors.map(function (color, index) {
-        return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
-          value: color.value,
-          key: index
-        }, color.text);
-      }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "row"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        type: "submit",
-        className: "btn btn-primary btn-block"
-      }, "\u0415dit")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-        className: "btn btn-danger btn-block",
-        onClick: this.handleDelete
-      }, "Delete"))))))));
+      }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_ButtonForm__WEBPACK_IMPORTED_MODULE_2__["default"], {
+        handleSubmit: this.handleSubmit,
+        id: this.props.match.params.id,
+        type: "edit"
+      })));
     }
   }]);
 
-  return EditButtonForm;
+  return EditButton;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (EditButtonForm);
+/* harmony default export */ __webpack_exports__["default"] = (EditButton);
 
 /***/ }),
 

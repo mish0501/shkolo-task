@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import Cell from "./Cell";
 import Alert from "./Alert";
 

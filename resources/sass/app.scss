@@ -25,13 +25,10 @@
     padding: 3px;
     background-color: transparent;
     border-color: transparent;
-}
 
-.dots {
-    width: 0.375em;
-    display: inline-block;
-    height: 1em;
-    vertical-align: -0.125em;
+    &-edit {
+        right: 35px;
+    }
 }
 
 .alertMsg p:last-child {

@@ -10948,11 +10948,8 @@ a.text-dark:focus {
   border-color: transparent;
 }
 
-.dots {
-  width: 0.375em;
-  display: inline-block;
-  height: 1em;
-  vertical-align: -0.125em;
+.menu-edit {
+  right: 35px;
 }
 
 .alertMsg p:last-child {

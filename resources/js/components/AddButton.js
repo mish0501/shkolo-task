@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-class Button extends Component {
+class AddButton extends Component {
     render() {
         let { position } = this.props;
 
@@ -18,4 +18,4 @@ class Button extends Component {
     }
 }
 
-export default Button;
+export default AddButton;
