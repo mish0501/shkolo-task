@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-class AddButtonForm extends Component {
+class EditButtonForm extends Component {
     constructor() {
         super();
         this.state = {
@@ -14,11 +14,30 @@ class AddButtonForm extends Component {
 
             title: "",
             link: "",
-            color: "primary"
+            color: "primary",
+            position: 0,
+            id: 0
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
+    }
+
+    componentDidMount() {
+        const { id } = this.props.match.params;
+
+        axios
+            .get(`/api/dashboard/${id}`)
+            .then(({ data: { title, link, color, id, position } }) => {
+                this.setState({
+                    title,
+                    link,
+                    color,
+                    id,
+                    position
+                });
+            });
     }
 
     handleInputChange({ target }) {
@@ -30,12 +49,11 @@ class AddButtonForm extends Component {
     }
 
     handleSubmit(event) {
-        const { color, title, link } = this.state;
-        let { position } = this.props.match.params;
+        const { color, title, link, position, id } = this.state;
         event.preventDefault();
 
         axios
-            .post("/api/dashboard", {
+            .put(`/api/dashboard/${id}`, {
                 color,
                 title,
                 link,
@@ -51,6 +69,22 @@ class AddButtonForm extends Component {
                     console.error(error);
                 }
             );
+    }
+
+    handleDelete(event) {
+        const { id } = this.state;
+        event.preventDefault();
+
+        axios.delete(`/api/dashboard/${id}`).then(
+            ({ data }) => {
+                if (data.type == "success") {
+                    this.props.history.replace("/dashboard");
+                }
+            },
+            error => {
+                console.error(error);
+            }
+        );
     }
 
     render() {
@@ -111,13 +145,22 @@ class AddButtonForm extends Component {
                                         ))}
                                     </select>
                                 </div>
+
                                 <div className="row">
                                     <div className="col">
                                         <button
                                             type="submit"
                                             className="btn btn-primary btn-block"
                                         >
-                                            Create
+                                            Еdit
+                                        </button>
+                                    </div>
+                                    <div className="col">
+                                        <button
+                                            className="btn btn-danger btn-block"
+                                            onClick={this.handleDelete}
+                                        >
+                                            Delete
                                         </button>
                                     </div>
                                 </div>
@@ -130,4 +173,4 @@ class AddButtonForm extends Component {
     }
 }
 
-export default AddButtonForm;
+export default EditButtonForm;

@@ -51,12 +51,12 @@ class ButtonController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Button  $button
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Button $button)
+    public function show(Request $request, $id)
     {
-        //
+        return Button::whereId($id)->first();
     }
 
     /**
@@ -66,9 +66,20 @@ class ButtonController extends Controller
      * @param  \App\Button  $button
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Button $button)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'title' => 'required|max:255',
+            'link' => 'required',
+            'color' => 'required',
+            'position' => 'required'
+        ]);
+
+        $button = Button::whereId($id)->first();
+
+        $button->update($validatedData);
+
+        return ['type' => 'success'];
     }
 
     /**
@@ -77,8 +88,10 @@ class ButtonController extends Controller
      * @param  \App\Button  $button
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Button $button)
+    public function destroy($id)
     {
-        //
+        Button::whereId($id)->first()->delete();
+
+        return ['type' => 'success'];
     }
 }
