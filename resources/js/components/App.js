@@ -7,15 +7,16 @@ import AddButtonForm from "./AddButtonForm";
 import EditButtonForm from "./EditButtonForm";
 
 class App extends Component {
+    componentWillMount() {
+        window.history.replaceState({}, "");
+    }
+
     render() {
         return (
             <BrowserRouter>
                 <nav className="navbar navbar-dark bg-primary mb-3">
                     <Link className="navbar-brand mb-0 h1" to="/dashboard">
-                        <img
-                            src="https://app.shkolo.bg/img/logo.png"
-                            alt="Shkolo logo"
-                        />
+                        <img src="/img/logo.png" alt="Shkolo logo" />
                     </Link>
                 </nav>
                 <div className="container">

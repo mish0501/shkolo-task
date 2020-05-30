@@ -65,8 +65,11 @@ class EditButtonForm extends Component {
             .then(
                 ({ data }) => {
                     if (data.type == "success") {
-                        this.props.history.push("/dashboard", {
-                            alert: data
+                        this.props.history.push({
+                            pathname: "/dashboard",
+                            state: {
+                                alert: data
+                            }
                         });
                     }
                 },
@@ -93,8 +96,11 @@ class EditButtonForm extends Component {
         axios.delete(`/api/dashboard/${id}`).then(
             ({ data }) => {
                 if (data.type == "success") {
-                    this.props.history.replace("/dashboard", {
-                        alert: data
+                    this.props.history.replace({
+                        pathname: "/dashboard",
+                        state: {
+                            alert: data
+                        }
                     });
                 }
             },

@@ -80091,8 +80091,11 @@ var AddButtonForm = /*#__PURE__*/function (_Component) {
         var data = _ref2.data;
 
         if (data.type == "success") {
-          _this2.props.history.replace("/dashboard", {
-            alert: data
+          _this2.props.history.replace({
+            pathname: "/dashboard",
+            state: {
+              alert: data
+            }
           });
         }
       }, function (_ref3) {
@@ -80325,6 +80328,11 @@ var App = /*#__PURE__*/function (_Component) {
   }
 
   _createClass(App, [{
+    key: "componentWillMount",
+    value: function componentWillMount() {
+      window.history.replaceState({}, "");
+    }
+  }, {
     key: "render",
     value: function render() {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("nav", {
@@ -80333,7 +80341,7 @@ var App = /*#__PURE__*/function (_Component) {
         className: "navbar-brand mb-0 h1",
         to: "/dashboard"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
-        src: "https://app.shkolo.bg/img/logo.png",
+        src: "/img/logo.png",
         alt: "Shkolo logo"
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "container"
@@ -80754,8 +80762,11 @@ var EditButtonForm = /*#__PURE__*/function (_Component) {
         var data = _ref3.data;
 
         if (data.type == "success") {
-          _this3.props.history.push("/dashboard", {
-            alert: data
+          _this3.props.history.push({
+            pathname: "/dashboard",
+            state: {
+              alert: data
+            }
           });
         }
       }, function (_ref4) {
@@ -80782,8 +80793,11 @@ var EditButtonForm = /*#__PURE__*/function (_Component) {
         var data = _ref5.data;
 
         if (data.type == "success") {
-          _this4.props.history.replace("/dashboard", {
-            alert: data
+          _this4.props.history.replace({
+            pathname: "/dashboard",
+            state: {
+              alert: data
+            }
           });
         }
       }, function (error) {
