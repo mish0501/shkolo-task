@@ -80142,7 +80142,6 @@ var AddButtonForm = /*#__PURE__*/function (_Component) {
         id: "title",
         name: "title",
         value: this.state.title,
-        placeholder: "Google",
         onChange: this.handleInputChange,
         required: true
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -80155,7 +80154,6 @@ var AddButtonForm = /*#__PURE__*/function (_Component) {
         id: "link",
         name: "link",
         value: this.state.link,
-        placeholder: "https://google.com",
         onChange: this.handleInputChange,
         required: true
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -80835,7 +80833,6 @@ var EditButtonForm = /*#__PURE__*/function (_Component) {
         id: "title",
         name: "title",
         value: this.state.title,
-        placeholder: "Google",
         onChange: this.handleInputChange,
         required: true
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -80848,7 +80845,6 @@ var EditButtonForm = /*#__PURE__*/function (_Component) {
         id: "link",
         name: "link",
         value: this.state.link,
-        placeholder: "https://google.com",
         onChange: this.handleInputChange,
         required: true
       })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {

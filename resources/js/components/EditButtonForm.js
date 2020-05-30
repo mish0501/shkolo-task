@@ -130,7 +130,6 @@ class EditButtonForm extends Component {
                                         id="title"
                                         name="title"
                                         value={this.state.title}
-                                        placeholder="Google"
                                         onChange={this.handleInputChange}
                                         required
                                     />
@@ -144,7 +143,6 @@ class EditButtonForm extends Component {
                                         id="link"
                                         name="link"
                                         value={this.state.link}
-                                        placeholder="https://google.com"
                                         onChange={this.handleInputChange}
                                         required
                                     />
