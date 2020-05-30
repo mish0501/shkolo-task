@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect, Link } from "react-router-dom";
 
 import Dashboard from "./Dashboard";
 import AddButtonForm from "./AddButtonForm";
@@ -11,12 +11,12 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <nav className="navbar navbar-dark bg-primary mb-3">
-                    <span className="navbar-brand mb-0 h1">
+                    <Link className="navbar-brand mb-0 h1" to="/dashboard">
                         <img
                             src="https://app.shkolo.bg/img/logo.png"
                             alt="Shkolo logo"
                         />
-                    </span>
+                    </Link>
                 </nav>
                 <div className="container">
                     <Switch>
@@ -28,6 +28,7 @@ class App extends Component {
                             path="/dashboard/button/edit/:id"
                             component={EditButtonForm}
                         />
+                        <Redirect exact from="/" to="/dashboard" />
                         <Route path="/dashboard" component={Dashboard} />
                     </Switch>
                 </div>

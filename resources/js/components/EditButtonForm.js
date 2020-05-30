@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import Errors from "./Errors";
+
 class EditButtonForm extends Component {
     constructor() {
         super();
@@ -16,7 +18,8 @@ class EditButtonForm extends Component {
             link: "",
             color: "primary",
             position: 0,
-            id: 0
+            id: 0,
+            errors: []
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -65,8 +68,18 @@ class EditButtonForm extends Component {
                         this.props.history.replace("/dashboard");
                     }
                 },
-                error => {
-                    console.error(error);
+                ({
+                    response: {
+                        data: { errors: errorMsgs }
+                    }
+                }) => {
+                    let errors = Object.keys(errorMsgs)
+                        .map(key => errorMsgs[key])
+                        .reduce((prev, curr) => prev.concat(curr), []);
+
+                    this.setState({
+                        errors
+                    });
                 }
             );
     }
@@ -88,11 +101,13 @@ class EditButtonForm extends Component {
     }
 
     render() {
-        let { colors } = this.state;
+        let { colors, errors } = this.state;
 
         return (
             <div className="row justify-content-center">
                 <div className="col-12 col-sm-8">
+                    {errors.length > 0 ? <Errors errors={errors} /> : ""}
+
                     <div className="card">
                         <div className="card-header">Add new button</div>
                         <div className="card-body">

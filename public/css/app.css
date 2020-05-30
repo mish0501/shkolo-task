@@ -10955,3 +10955,7 @@ a.text-dark:focus {
   vertical-align: -0.125em;
 }
 
+.errorMsg p:last-child {
+  margin-bottom: 0px;
+}
+

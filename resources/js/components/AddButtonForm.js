@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import Errors from "./Errors";
+
 class AddButtonForm extends Component {
     constructor() {
         super();
@@ -14,7 +16,8 @@ class AddButtonForm extends Component {
 
             title: "",
             link: "",
-            color: "primary"
+            color: "primary",
+            errors: []
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -47,18 +50,30 @@ class AddButtonForm extends Component {
                         this.props.history.replace("/dashboard");
                     }
                 },
-                error => {
-                    console.error(error);
+                ({
+                    response: {
+                        data: { errors: errorMsgs }
+                    }
+                }) => {
+                    let errors = Object.keys(errorMsgs)
+                        .map(key => errorMsgs[key])
+                        .reduce((prev, curr) => prev.concat(curr), []);
+
+                    this.setState({
+                        errors
+                    });
                 }
             );
     }
 
     render() {
-        let { colors } = this.state;
+        let { colors, errors } = this.state;
 
         return (
             <div className="row justify-content-center">
                 <div className="col-12 col-sm-8">
+                    {errors.length > 0 ? <Errors errors={errors} /> : ""}
+
                     <div className="card">
                         <div className="card-header">Add new button</div>
                         <div className="card-body">
