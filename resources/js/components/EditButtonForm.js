@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Errors from "./Errors";
+import Alert from "./Alert";
 
 class EditButtonForm extends Component {
     constructor() {
@@ -65,7 +65,9 @@ class EditButtonForm extends Component {
             .then(
                 ({ data }) => {
                     if (data.type == "success") {
-                        this.props.history.replace("/dashboard");
+                        this.props.history.push("/dashboard", {
+                            alert: data
+                        });
                     }
                 },
                 ({
@@ -91,7 +93,9 @@ class EditButtonForm extends Component {
         axios.delete(`/api/dashboard/${id}`).then(
             ({ data }) => {
                 if (data.type == "success") {
-                    this.props.history.replace("/dashboard");
+                    this.props.history.replace("/dashboard", {
+                        alert: data
+                    });
                 }
             },
             error => {
@@ -106,10 +110,10 @@ class EditButtonForm extends Component {
         return (
             <div className="row justify-content-center">
                 <div className="col-12 col-sm-8">
-                    {errors.length > 0 ? <Errors errors={errors} /> : ""}
+                    <Alert msgs={errors} type="error" />
 
                     <div className="card">
-                        <div className="card-header">Add new button</div>
+                        <div className="card-header">Edit button</div>
                         <div className="card-body">
                             <form onSubmit={this.handleSubmit}>
                                 <div className="form-group">

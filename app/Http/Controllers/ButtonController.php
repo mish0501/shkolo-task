@@ -45,7 +45,7 @@ class ButtonController extends Controller
 
         $button = Button::create($validatedData);
 
-        return ['type' => 'success'];
+        return ['type' => 'success', 'msgs' => ['Button added succefully.']];
     }
 
     /**
@@ -79,7 +79,7 @@ class ButtonController extends Controller
 
         $button->update($validatedData);
 
-        return ['type' => 'success'];
+        return ['type' => 'success', 'msgs' => ['Button edited succefully.']];
     }
 
     /**
@@ -92,6 +92,6 @@ class ButtonController extends Controller
     {
         Button::whereId($id)->first()->delete();
 
-        return ['type' => 'success'];
+        return ['type' => 'success', 'msgs' => ['Button deleted succefully.']];
     }
 }

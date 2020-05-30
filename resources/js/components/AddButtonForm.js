@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import Errors from "./Errors";
+import Alert from "./Alert";
 
 class AddButtonForm extends Component {
     constructor() {
@@ -47,7 +47,9 @@ class AddButtonForm extends Component {
             .then(
                 ({ data }) => {
                     if (data.type == "success") {
-                        this.props.history.replace("/dashboard");
+                        this.props.history.replace("/dashboard", {
+                            alert: data
+                        });
                     }
                 },
                 ({
@@ -72,7 +74,7 @@ class AddButtonForm extends Component {
         return (
             <div className="row justify-content-center">
                 <div className="col-12 col-sm-8">
-                    {errors.length > 0 ? <Errors errors={errors} /> : ""}
+                    <Alert msgs={errors} type="error" />
 
                     <div className="card">
                         <div className="card-header">Add new button</div>
