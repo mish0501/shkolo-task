@@ -12,6 +12,7 @@ class Button extends Component {
                 <a
                     href={link}
                     className={`btn btn-block button d-flex justify-content-center align-items-center btn-${color}`}
+                    target="_blank"
                 >
                     <span className="h5 text-truncate">{title}</span>
                 </a>

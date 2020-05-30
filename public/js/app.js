@@ -80430,7 +80430,8 @@ var Button = /*#__PURE__*/function (_Component) {
           id = _this$props$button.id;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: link,
-        className: "btn btn-block button d-flex justify-content-center align-items-center btn-".concat(color)
+        className: "btn btn-block button d-flex justify-content-center align-items-center btn-".concat(color),
+        target: "_blank"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
         className: "h5 text-truncate"
       }, title)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
