@@ -1,12 +1,38 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen } from "@fortawesome/free-solid-svg-icons";
+import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
 class Button extends Component {
+    constructor() {
+        super();
+
+        this.handelDeleteClick = this.handelDeleteClick.bind(this);
+    }
+
+    handelDeleteClick() {
+        const { id } = this.props.button;
+
+        axios.delete(`/api/dashboard/${id}`).then(
+            ({ data }) => {
+                if (data.type == "success") {
+                    this.props.history.push({
+                        pathname: "/dashboard",
+                        state: {
+                            alert: data
+                        }
+                    });
+                }
+            },
+            error => {
+                console.error(error);
+            }
+        );
+    }
+
     render() {
-        let { title, link, color, position, id } = this.props.button;
+        const { title, link, color, id } = this.props.button;
         return (
             <div>
                 <a
@@ -21,13 +47,23 @@ class Button extends Component {
                     to={{
                         pathname: `/dashboard/button/edit/${id}`
                     }}
-                    className={`menu btn btn-sm btn-${color}`}
+                    className={`menu menu-edit btn btn-sm btn-${color}`}
                 >
                     <FontAwesomeIcon icon={faPen} />
                 </Link>
+
+                <div
+                    to={{
+                        pathname: `/dashboard/button/edit/${id}`
+                    }}
+                    className={`menu btn btn-sm btn-${color}`}
+                    onClick={this.handelDeleteClick}
+                >
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                </div>
             </div>
         );
     }
 }
 
-export default Button;
+export default withRouter(Button);
