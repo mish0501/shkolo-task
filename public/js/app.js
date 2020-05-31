@@ -80220,6 +80220,7 @@ _defineProperty(Button, "contextType", _context_fetch_buttons_context__WEBPACK_I
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -80243,6 +80244,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -80299,7 +80301,8 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
 
       if (id) {
         this.setState({
-          isLoading: true
+          isLoading: true,
+          isButtonLoading: true
         });
         axios.get("/api/dashboard/buttons/".concat(id)).then(function (_ref) {
           var _ref$data = _ref.data,
@@ -80336,6 +80339,9 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
     key: "handleSubmit",
     value: function handleSubmit(event) {
       event.preventDefault();
+      this.setState({
+        isButtonLoading: true
+      });
 
       var button = function (_ref3) {
         var color = _ref3.color,
@@ -80357,7 +80363,10 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var colors = this.state.colors;
+      var _this$state = this.state,
+          colors = _this$state.colors,
+          isLoading = _this$state.isLoading,
+          isButtonLoading = _this$state.isButtonLoading;
       var type = this.props.type;
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card"
@@ -80365,7 +80374,7 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
         className: "card-header"
       }, type == "edit" && "Edit " || type == "add" && "Add a new ", "button"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_1__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
@@ -80411,11 +80420,14 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
       }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-        className: "col-3"
+        className: "col-12 col-sm-4"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
         type: "submit",
-        className: "btn btn-primary btn-block"
-      }, type == "edit" && "Edit" || type == "add" && "Submit"))))));
+        className: "btn btn-primary btn-block",
+        disabled: isButtonLoading
+      }, type == "edit" && "Edit" || type == "add" && "Submit", isButtonLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_1__["default"], {
+        isButton: true
+      })))))));
     }
   }]);
 
@@ -80609,6 +80621,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Cell__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Cell */ "./resources/js/components/Cell.js");
 /* harmony import */ var _Alert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Alert */ "./resources/js/components/Alert.js");
 /* harmony import */ var _context_fetch_buttons_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context/fetch-buttons-context */ "./resources/js/context/fetch-buttons-context.js");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -80636,6 +80649,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Dashboard = /*#__PURE__*/function (_Component) {
   _inherits(Dashboard, _Component);
 
@@ -80649,16 +80663,22 @@ var Dashboard = /*#__PURE__*/function (_Component) {
     _this = _super.call(this);
 
     _this.fetchButtons = function () {
+      _this.setState({
+        isLoading: true
+      });
+
       axios.get("/api/dashboard/buttons").then(function (response) {
         _this.setState({
-          buttons: response.data
+          buttons: response.data,
+          isLoading: false
         });
       });
     };
 
     _this.state = {
       buttons: [],
-      fetchButtons: _this.fetchButtons
+      fetchButtons: _this.fetchButtons,
+      isLoading: false
     };
     return _this;
   }
@@ -80671,7 +80691,9 @@ var Dashboard = /*#__PURE__*/function (_Component) {
   }, {
     key: "render",
     value: function render() {
-      var buttons = this.state.buttons;
+      var _this$state = this.state,
+          buttons = _this$state.buttons,
+          isLoading = _this$state.isLoading;
 
       var _ref = this.props.location.state || {},
           alert = _ref.alert;
@@ -80685,7 +80707,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
         type: type
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "row justify-content-center row-cols-1 row-cols-sm-3"
-      }, buttons.map(function (button) {
+      }, isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_4__["default"], null) : buttons.map(function (button) {
         return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Cell__WEBPACK_IMPORTED_MODULE_1__["default"], {
           button: button,
           key: button.position
@@ -80820,6 +80842,40 @@ var EditButton = /*#__PURE__*/function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (EditButton);
+
+/***/ }),
+
+/***/ "./resources/js/components/Loading.js":
+/*!********************************************!*\
+  !*** ./resources/js/components/Loading.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+function Loading(_ref) {
+  var _ref$isButton = _ref.isButton,
+      isButton = _ref$isButton === void 0 ? false : _ref$isButton;
+  return !isButton ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "d-flex justify-content-center"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "spinner-border",
+    role: "status"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "sr-only"
+  }, "Loading..."))) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "spinner-border spinner-border-sm ml-2 align-middle",
+    role: "status",
+    "aria-hidden": "true"
+  }));
+}
+
+/* harmony default export */ __webpack_exports__["default"] = (Loading);
 
 /***/ }),
 

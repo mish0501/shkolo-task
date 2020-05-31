@@ -4,22 +4,29 @@ import Cell from "./Cell";
 import Alert from "./Alert";
 
 import FetchButtonsContext from "../context/fetch-buttons-context";
+import Loading from "./Loading";
 
 class Dashboard extends Component {
     constructor() {
         super();
 
         this.fetchButtons = () => {
+            this.setState({
+                isLoading: true
+            });
+
             axios.get("/api/dashboard/buttons").then(response => {
                 this.setState({
-                    buttons: response.data
+                    buttons: response.data,
+                    isLoading: false
                 });
             });
         };
 
         this.state = {
             buttons: [],
-            fetchButtons: this.fetchButtons
+            fetchButtons: this.fetchButtons,
+            isLoading: false
         };
     }
 
@@ -28,7 +35,7 @@ class Dashboard extends Component {
     }
 
     render() {
-        let { buttons } = this.state;
+        let { buttons, isLoading } = this.state;
 
         const { alert } = this.props.location.state || {};
         const msgs = (alert && alert.msgs) || [];
@@ -39,9 +46,13 @@ class Dashboard extends Component {
                 <Alert msgs={msgs} type={type} />
 
                 <div className="row justify-content-center row-cols-1 row-cols-sm-3">
-                    {buttons.map(button => (
-                        <Cell button={button} key={button.position} />
-                    ))}
+                    {isLoading ? (
+                        <Loading />
+                    ) : (
+                        buttons.map(button => (
+                            <Cell button={button} key={button.position} />
+                        ))
+                    )}
                 </div>
             </FetchButtonsContext.Provider>
         );

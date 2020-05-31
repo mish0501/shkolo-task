@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Loading from "./Loading";
 
 class ButtonForm extends Component {
     constructor() {
@@ -32,7 +33,8 @@ class ButtonForm extends Component {
 
         if (id) {
             this.setState({
-                isLoading: true
+                isLoading: true,
+                isButtonLoading: true
             });
 
             axios
@@ -64,6 +66,10 @@ class ButtonForm extends Component {
 
     handleSubmit(event) {
         event.preventDefault();
+        this.setState({
+            isButtonLoading: true
+        });
+
         const button = (({ color, title, link, id, position }) => ({
             color,
             title,
@@ -76,7 +82,7 @@ class ButtonForm extends Component {
     }
 
     render() {
-        const { colors } = this.state;
+        const { colors, isLoading, isButtonLoading } = this.state;
 
         const { type } = this.props;
 
@@ -88,64 +94,73 @@ class ButtonForm extends Component {
                     button
                 </div>
                 <div className="card-body">
-                    <form onSubmit={this.handleSubmit}>
-                        <div className="form-group">
-                            <label htmlFor="title">Title</label>
-                            <input
-                                type="text"
-                                className="form-control"
-                                id="title"
-                                name="title"
-                                value={this.state.title}
-                                onChange={this.handleInputChange}
-                                required
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="link">Link (valid URL)</label>
-                            <input
-                                type="url"
-                                pattern="https?://.+"
-                                className="form-control"
-                                id="link"
-                                name="link"
-                                value={this.state.link}
-                                onChange={this.handleInputChange}
-                                required
-                            />
-                        </div>
-
-                        <div className="form-group">
-                            <label htmlFor="color">Color</label>
-                            <select
-                                className="form-control text-capitalize"
-                                id="color"
-                                name="color"
-                                value={this.state.color}
-                                onChange={this.handleInputChange}
-                                required
-                            >
-                                {colors.map((color, index) => (
-                                    <option value={color.value} key={index}>
-                                        {color.text}
-                                    </option>
-                                ))}
-                            </select>
-                        </div>
-
-                        <div className="row">
-                            <div className="col-3">
-                                <button
-                                    type="submit"
-                                    className="btn btn-primary btn-block"
-                                >
-                                    {(type == "edit" && "Edit") ||
-                                        (type == "add" && "Submit")}
-                                </button>
+                    {isLoading ? (
+                        <Loading />
+                    ) : (
+                        <form onSubmit={this.handleSubmit}>
+                            <div className="form-group">
+                                <label htmlFor="title">Title</label>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    id="title"
+                                    name="title"
+                                    value={this.state.title}
+                                    onChange={this.handleInputChange}
+                                    required
+                                />
                             </div>
-                        </div>
-                    </form>
+
+                            <div className="form-group">
+                                <label htmlFor="link">Link (valid URL)</label>
+                                <input
+                                    type="url"
+                                    pattern="https?://.+"
+                                    className="form-control"
+                                    id="link"
+                                    name="link"
+                                    value={this.state.link}
+                                    onChange={this.handleInputChange}
+                                    required
+                                />
+                            </div>
+
+                            <div className="form-group">
+                                <label htmlFor="color">Color</label>
+                                <select
+                                    className="form-control text-capitalize"
+                                    id="color"
+                                    name="color"
+                                    value={this.state.color}
+                                    onChange={this.handleInputChange}
+                                    required
+                                >
+                                    {colors.map((color, index) => (
+                                        <option value={color.value} key={index}>
+                                            {color.text}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+
+                            <div className="row">
+                                <div className="col-12 col-sm-4">
+                                    <button
+                                        type="submit"
+                                        className="btn btn-primary btn-block"
+                                        disabled={isButtonLoading}
+                                    >
+                                        {(type == "edit" && "Edit") ||
+                                            (type == "add" && "Submit")}
+
+                                        {isButtonLoading && (
+                                            <Loading isButton={true} />
+                                        )}
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    )}
                 </div>
             </div>
         );
