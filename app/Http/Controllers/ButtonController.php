@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Button;
+use App\Http\Requests\StoreButton;
+use App\Http\Requests\UpdateButton;
 use Illuminate\Http\Request;
 
 class ButtonController extends Controller
@@ -31,19 +33,14 @@ class ButtonController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\StoreButton  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreButton $request)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'link' => 'required|url',
-            'color' => 'required',
-            'position' => 'required|unique:buttons,position'
-        ]);
+        $validatedData = $request->validated();
 
-        $button = Button::create($validatedData);
+        Button::create($validatedData);
 
         return ['type' => 'success', 'msgs' => ['Button added succefully.']];
     }
@@ -56,26 +53,20 @@ class ButtonController extends Controller
      */
     public function show(Request $request, $id)
     {
-        return Button::whereId($id)->first();
+        return Button::findOrFail($id)->first();
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Button  $button
+     * @param  \App\Http\Requests\UpdateButton  $request
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UpdateButton $request, $id)
     {
-        $validatedData = $request->validate([
-            'title' => 'required|max:255',
-            'link' => 'required|url',
-            'color' => 'required',
-            'position' => 'required'
-        ]);
+        $validatedData = $request->validated();
 
-        $button = Button::whereId($id)->first();
+        $button = Button::findOrFail($id)->first();
 
         $button->update($validatedData);
 
@@ -90,7 +81,7 @@ class ButtonController extends Controller
      */
     public function destroy($id)
     {
-        Button::whereId($id)->first()->delete();
+        Button::findOrFail($id)->first()->delete();
 
         return ['type' => 'success', 'msgs' => ['Button deleted succefully.']];
     }

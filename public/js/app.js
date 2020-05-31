@@ -80163,8 +80163,17 @@ var Button = /*#__PURE__*/function (_Component) {
 
           _this2.context.fetchButtons();
         }
-      }, function (error) {
-        console.error(error);
+      }, function (_ref2) {
+        var status = _ref2.response.status;
+        status == "404" && _this2.props.history.replace({
+          pathname: "/dashboard",
+          state: {
+            alert: {
+              type: "error",
+              msgs: ["Button with this ID doesn't exists."]
+            }
+          }
+        });
       });
     }
   }, {
@@ -80220,7 +80229,8 @@ _defineProperty(Button, "contextType", _context_fetch_buttons_context__WEBPACK_I
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.js");
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _Loading__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Loading */ "./resources/js/components/Loading.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -80244,6 +80254,7 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
 
 
 
@@ -80282,7 +80293,8 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
       position: 0,
       id: 0,
       errors: [],
-      isLoading: false
+      isLoading: false,
+      isButtonLoading: false
     };
     _this.handleInputChange = _this.handleInputChange.bind(_assertThisInitialized(_this));
     _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_this));
@@ -80297,12 +80309,10 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
       var _this$props = this.props,
           id = _this$props.id,
           position = _this$props.position;
-      console.log(id, position);
 
       if (id) {
         this.setState({
-          isLoading: true,
-          isButtonLoading: true
+          isLoading: true
         });
         axios.get("/api/dashboard/buttons/".concat(id)).then(function (_ref) {
           var _ref$data = _ref.data,
@@ -80320,6 +80330,17 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
             position: position,
             isLoading: false
           });
+        }, function (_ref2) {
+          var status = _ref2.response.status;
+          status == "404" && _this2.props.history.replace({
+            pathname: "/dashboard",
+            state: {
+              alert: {
+                type: "error",
+                msgs: ["Button with this ID doesn't exists."]
+              }
+            }
+          });
         });
       } else if (position) {
         this.setState({
@@ -80329,8 +80350,8 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
     }
   }, {
     key: "handleInputChange",
-    value: function handleInputChange(_ref2) {
-      var target = _ref2.target;
+    value: function handleInputChange(_ref3) {
+      var target = _ref3.target;
       var name = target.name,
           value = target.value;
       this.setState(_defineProperty({}, name, value));
@@ -80343,12 +80364,12 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
         isButtonLoading: true
       });
 
-      var button = function (_ref3) {
-        var color = _ref3.color,
-            title = _ref3.title,
-            link = _ref3.link,
-            id = _ref3.id,
-            position = _ref3.position;
+      var button = function (_ref4) {
+        var color = _ref4.color,
+            title = _ref4.title,
+            link = _ref4.link,
+            id = _ref4.id,
+            position = _ref4.position;
         return {
           color: color,
           title: title,
@@ -80374,7 +80395,7 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
         className: "card-header"
       }, type == "edit" && "Edit " || type == "add" && "Add a new ", "button"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "card-body"
-      }, isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_1__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+      }, isLoading ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_2__["default"], null) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
         onSubmit: this.handleSubmit
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "form-group"
@@ -80425,7 +80446,7 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
         type: "submit",
         className: "btn btn-primary btn-block",
         disabled: isButtonLoading
-      }, type == "edit" && "Edit" || type == "add" && "Submit", isButtonLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      }, type == "edit" && "Edit" || type == "add" && "Submit", isButtonLoading && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Loading__WEBPACK_IMPORTED_MODULE_2__["default"], {
         isButton: true
       })))))));
     }
@@ -80434,7 +80455,7 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
   return ButtonForm;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
-/* harmony default export */ __webpack_exports__["default"] = (ButtonForm);
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(ButtonForm));
 
 /***/ }),
 
@@ -80807,16 +80828,25 @@ var EditButton = /*#__PURE__*/function (_Component) {
           });
         }
       }, function (_ref3) {
-        var errorMsgs = _ref3.response.data.errors;
-        var errors = Object.keys(errorMsgs).map(function (key) {
-          return errorMsgs[key];
-        }).reduce(function (prev, curr) {
-          return prev.concat(curr);
-        }, []);
+        var _ref3$response = _ref3.response,
+            errorMsgs = _ref3$response.data.errors,
+            status = _ref3$response.status;
 
-        _this2.setState({
-          errors: errors
-        });
+        if (state == "404") {
+          _this2.setState({
+            errors: ["Button with this ID doesn't exists."]
+          });
+        } else {
+          var errors = Object.keys(errorMsgs).map(function (key) {
+            return errorMsgs[key];
+          }).reduce(function (prev, curr) {
+            return prev.concat(curr);
+          }, []);
+
+          _this2.setState({
+            errors: errors
+          });
+        }
       });
     }
   }, {

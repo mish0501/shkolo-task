@@ -31,8 +31,17 @@ class Button extends Component {
                     this.context.fetchButtons();
                 }
             },
-            error => {
-                console.error(error);
+            ({ response: { status } }) => {
+                status == "404" &&
+                    this.props.history.replace({
+                        pathname: "/dashboard",
+                        state: {
+                            alert: {
+                                type: "error",
+                                msgs: ["Button with this ID doesn't exists."]
+                            }
+                        }
+                    });
             }
         );
     }

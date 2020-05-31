@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+
 import Loading from "./Loading";
 
 class ButtonForm extends Component {
@@ -19,7 +21,8 @@ class ButtonForm extends Component {
             position: 0,
             id: 0,
             errors: [],
-            isLoading: false
+            isLoading: false,
+            isButtonLoading: false
         };
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -29,17 +32,13 @@ class ButtonForm extends Component {
     componentDidMount() {
         const { id, position } = this.props;
 
-        console.log(id, position);
-
         if (id) {
             this.setState({
-                isLoading: true,
-                isButtonLoading: true
+                isLoading: true
             });
 
-            axios
-                .get(`/api/dashboard/buttons/${id}`)
-                .then(({ data: { title, link, color, id, position } }) => {
+            axios.get(`/api/dashboard/buttons/${id}`).then(
+                ({ data: { title, link, color, id, position } }) => {
                     this.setState({
                         title,
                         link,
@@ -48,7 +47,22 @@ class ButtonForm extends Component {
                         position,
                         isLoading: false
                     });
-                });
+                },
+                ({ response: { status } }) => {
+                    status == "404" &&
+                        this.props.history.replace({
+                            pathname: "/dashboard",
+                            state: {
+                                alert: {
+                                    type: "error",
+                                    msgs: [
+                                        "Button with this ID doesn't exists."
+                                    ]
+                                }
+                            }
+                        });
+                }
+            );
         } else if (position) {
             this.setState({
                 position
@@ -167,4 +181,4 @@ class ButtonForm extends Component {
     }
 }
 
-export default ButtonForm;
+export default withRouter(ButtonForm);

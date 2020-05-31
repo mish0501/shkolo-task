@@ -34,16 +34,23 @@ class EditButton extends Component {
                 },
                 ({
                     response: {
-                        data: { errors: errorMsgs }
+                        data: { errors: errorMsgs },
+                        status
                     }
                 }) => {
-                    let errors = Object.keys(errorMsgs)
-                        .map(key => errorMsgs[key])
-                        .reduce((prev, curr) => prev.concat(curr), []);
+                    if (state == "404") {
+                        this.setState({
+                            errors: ["Button with this ID doesn't exists."]
+                        });
+                    } else {
+                        let errors = Object.keys(errorMsgs)
+                            .map(key => errorMsgs[key])
+                            .reduce((prev, curr) => prev.concat(curr), []);
 
-                    this.setState({
-                        errors
-                    });
+                        this.setState({
+                            errors
+                        });
+                    }
                 }
             );
     }
