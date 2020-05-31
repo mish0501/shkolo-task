@@ -4,12 +4,16 @@ import { Link, withRouter } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPen, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 
+import FetchButtonsContext from "../context/fetch-buttons-context";
+
 class Button extends Component {
     constructor() {
         super();
 
         this.handelDeleteClick = this.handelDeleteClick.bind(this);
     }
+
+    static contextType = FetchButtonsContext;
 
     handelDeleteClick() {
         const { id } = this.props.button;
@@ -23,6 +27,8 @@ class Button extends Component {
                             alert: data
                         }
                     });
+
+                    this.context.fetchButtons();
                 }
             },
             error => {
@@ -34,7 +40,7 @@ class Button extends Component {
     render() {
         const { title, link, color, id } = this.props.button;
         return (
-            <div>
+            <React.Fragment>
                 <a
                     href={link}
                     className={`btn btn-block button d-flex justify-content-center align-items-center btn-${color}`}
@@ -61,7 +67,7 @@ class Button extends Component {
                 >
                     <FontAwesomeIcon icon={faTrashAlt} />
                 </div>
-            </div>
+            </React.Fragment>
         );
     }
 }

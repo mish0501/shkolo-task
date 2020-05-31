@@ -3,20 +3,28 @@ import React, { Component } from "react";
 import Cell from "./Cell";
 import Alert from "./Alert";
 
+import FetchButtonsContext from "../context/fetch-buttons-context";
+
 class Dashboard extends Component {
     constructor() {
         super();
+
+        this.fetchButtons = () => {
+            axios.get("/api/dashboard").then(response => {
+                this.setState({
+                    buttons: response.data
+                });
+            });
+        };
+
         this.state = {
-            buttons: []
+            buttons: [],
+            fetchButtons: this.fetchButtons
         };
     }
 
     componentDidMount() {
-        axios.get("/api/dashboard").then(response => {
-            this.setState({
-                buttons: response.data
-            });
-        });
+        this.fetchButtons();
     }
 
     render() {
@@ -27,7 +35,7 @@ class Dashboard extends Component {
         const type = (alert && alert.type) || "";
 
         return (
-            <React.Fragment>
+            <FetchButtonsContext.Provider value={this.state}>
                 <Alert msgs={msgs} type={type} />
 
                 <div className="row justify-content-center row-cols-1 row-cols-sm-3">
@@ -35,7 +43,7 @@ class Dashboard extends Component {
                         <Cell button={button} key={button.position} />
                     ))}
                 </div>
-            </React.Fragment>
+            </FetchButtonsContext.Provider>
         );
     }
 }

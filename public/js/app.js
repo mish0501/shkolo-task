@@ -80177,6 +80177,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _fortawesome_react_fontawesome__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @fortawesome/react-fontawesome */ "./node_modules/@fortawesome/react-fontawesome/index.es.js");
 /* harmony import */ var _fortawesome_free_solid_svg_icons__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @fortawesome/free-solid-svg-icons */ "./node_modules/@fortawesome/free-solid-svg-icons/index.es.js");
+/* harmony import */ var _context_fetch_buttons_context__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../context/fetch-buttons-context */ "./resources/js/context/fetch-buttons-context.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -80198,6 +80199,9 @@ function _assertThisInitialized(self) { if (self === void 0) { throw new Referen
 function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -80235,6 +80239,8 @@ var Button = /*#__PURE__*/function (_Component) {
               alert: data
             }
           });
+
+          _this2.context.fetchButtons();
         }
       }, function (error) {
         console.error(error);
@@ -80248,7 +80254,7 @@ var Button = /*#__PURE__*/function (_Component) {
           link = _this$props$button.link,
           color = _this$props$button.color,
           id = _this$props$button.id;
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
         href: link,
         className: "btn btn-block button d-flex justify-content-center align-items-center btn-".concat(color),
         target: "_blank"
@@ -80275,6 +80281,8 @@ var Button = /*#__PURE__*/function (_Component) {
 
   return Button;
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
+
+_defineProperty(Button, "contextType", _context_fetch_buttons_context__WEBPACK_IMPORTED_MODULE_4__["default"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["withRouter"])(Button));
 
@@ -80717,6 +80725,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _Cell__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Cell */ "./resources/js/components/Cell.js");
 /* harmony import */ var _Alert__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Alert */ "./resources/js/components/Alert.js");
+/* harmony import */ var _context_fetch_buttons_context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../context/fetch-buttons-context */ "./resources/js/context/fetch-buttons-context.js");
 function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -80743,6 +80752,7 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 
 
+
 var Dashboard = /*#__PURE__*/function (_Component) {
   _inherits(Dashboard, _Component);
 
@@ -80754,8 +80764,18 @@ var Dashboard = /*#__PURE__*/function (_Component) {
     _classCallCheck(this, Dashboard);
 
     _this = _super.call(this);
+
+    _this.fetchButtons = function () {
+      axios.get("/api/dashboard").then(function (response) {
+        _this.setState({
+          buttons: response.data
+        });
+      });
+    };
+
     _this.state = {
-      buttons: []
+      buttons: [],
+      fetchButtons: _this.fetchButtons
     };
     return _this;
   }
@@ -80763,13 +80783,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
   _createClass(Dashboard, [{
     key: "componentDidMount",
     value: function componentDidMount() {
-      var _this2 = this;
-
-      axios.get("/api/dashboard").then(function (response) {
-        _this2.setState({
-          buttons: response.data
-        });
-      });
+      this.fetchButtons();
     }
   }, {
     key: "render",
@@ -80781,7 +80795,9 @@ var Dashboard = /*#__PURE__*/function (_Component) {
 
       var msgs = alert && alert.msgs || [];
       var type = alert && alert.type || "";
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Alert__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_context_fetch_buttons_context__WEBPACK_IMPORTED_MODULE_3__["default"].Provider, {
+        value: this.state
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Alert__WEBPACK_IMPORTED_MODULE_2__["default"], {
         msgs: msgs,
         type: type
       }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -80921,6 +80937,26 @@ var EditButton = /*#__PURE__*/function (_Component) {
 }(react__WEBPACK_IMPORTED_MODULE_0__["Component"]);
 
 /* harmony default export */ __webpack_exports__["default"] = (EditButton);
+
+/***/ }),
+
+/***/ "./resources/js/context/fetch-buttons-context.js":
+/*!*******************************************************!*\
+  !*** ./resources/js/context/fetch-buttons-context.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var FetchButtonsContext = react__WEBPACK_IMPORTED_MODULE_0___default.a.createContext({
+  buttons: [],
+  fetchButtons: function fetchButtons() {}
+});
+/* harmony default export */ __webpack_exports__["default"] = (FetchButtonsContext);
 
 /***/ }),
 
