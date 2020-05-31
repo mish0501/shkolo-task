@@ -41,18 +41,20 @@ class CreateButton extends Component {
                         });
                     }
                 },
-                ({
-                    response: {
-                        data: { errors: errorMsgs }
-                    }
-                }) => {
-                    let errors = Object.keys(errorMsgs)
-                        .map(key => errorMsgs[key])
-                        .reduce((prev, curr) => prev.concat(curr), []);
+                ({ response: { data } }) => {
+                    if (data.errors) {
+                        let errors = Object.keys(errorMsgs)
+                            .map(key => errorMsgs[key])
+                            .reduce((prev, curr) => prev.concat(curr), []);
 
-                    this.setState({
-                        errors
-                    });
+                        this.setState({
+                            errors
+                        });
+                    } else {
+                        this.setState({
+                            errors: ["Server error"]
+                        });
+                    }
                 }
             );
     }

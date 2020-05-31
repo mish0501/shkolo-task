@@ -7,10 +7,50 @@ class EditButton extends Component {
     constructor() {
         super();
         this.state = {
-            errors: []
+            errors: [],
+            isLoading: false,
+            button: {}
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    componentDidMount() {
+        this.setState({
+            isLoading: true
+        });
+        const id = this.props.match.params.id;
+
+        axios.get(`/api/dashboard/buttons/${id}`).then(
+            ({ data: { title, link, color, id, position } }) => {
+                this.setState({
+                    button: {
+                        title,
+                        link,
+                        color,
+                        id,
+                        position
+                    },
+                    isLoading: false
+                });
+            },
+            ({ response: { status } }) => {
+                status == "404"
+                    ? this.props.history.replace({
+                          pathname: "/dashboard",
+                          state: {
+                              alert: {
+                                  type: "error",
+                                  msgs: ["Button with this ID doesn't exists."]
+                              }
+                          }
+                      })
+                    : this.setState({
+                          isLoading: false,
+                          errors: ["Server error"]
+                      });
+            }
+        );
     }
 
     handleSubmit({ color, title, link, position, id }) {
@@ -32,42 +72,49 @@ class EditButton extends Component {
                         });
                     }
                 },
-                ({
-                    response: {
-                        data: { errors: errorMsgs },
-                        status
-                    }
-                }) => {
-                    if (state == "404") {
+                ({ response: { data, status } }) => {
+                    console.log("error");
+
+                    if (status == "404") {
                         this.setState({
                             errors: ["Button with this ID doesn't exists."]
                         });
-                    } else {
-                        let errors = Object.keys(errorMsgs)
-                            .map(key => errorMsgs[key])
+                        console.log("404");
+                    } else if (data.errors) {
+                        let errors = Object.keys(data.errors)
+                            .map(key => data.errors[key])
                             .reduce((prev, curr) => prev.concat(curr), []);
 
                         this.setState({
                             errors
                         });
+                        console.log("validation");
+                    } else {
+                        this.setState({
+                            errors: ["Server error"]
+                        });
+                        console.log("server");
                     }
                 }
             );
     }
 
     render() {
-        let { errors } = this.state;
+        let { errors, isLoading, button } = this.state;
 
         return (
             <div className="row justify-content-center">
                 <div className="col-12 col-sm-8">
                     <Alert msgs={errors} type="error" />
 
-                    <ButtonForm
-                        handleSubmit={this.handleSubmit}
-                        id={this.props.match.params.id}
-                        type="edit"
-                    />
+                    {Object.keys(button).length !== 0 && (
+                        <ButtonForm
+                            handleSubmit={this.handleSubmit}
+                            button={button}
+                            type="edit"
+                            isLoading={isLoading}
+                        />
+                    )}
                 </div>
             </div>
         );

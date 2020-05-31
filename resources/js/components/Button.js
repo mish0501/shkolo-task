@@ -32,16 +32,20 @@ class Button extends Component {
                 }
             },
             ({ response: { status } }) => {
-                status == "404" &&
-                    this.props.history.replace({
-                        pathname: "/dashboard",
-                        state: {
-                            alert: {
-                                type: "error",
-                                msgs: ["Button with this ID doesn't exists."]
-                            }
+                const msgs =
+                    status == "404"
+                        ? "Button with this ID doesn't exists."
+                        : "Server error";
+
+                this.props.history.replace({
+                    pathname: "/dashboard",
+                    state: {
+                        alert: {
+                            type: "error",
+                            msgs: [msgs]
                         }
-                    });
+                    }
+                });
             }
         );
     }

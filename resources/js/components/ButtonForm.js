@@ -20,8 +20,6 @@ class ButtonForm extends Component {
             color: "primary",
             position: 0,
             id: 0,
-            errors: [],
-            isLoading: false,
             isButtonLoading: false
         };
 
@@ -30,39 +28,16 @@ class ButtonForm extends Component {
     }
 
     componentDidMount() {
-        const { id, position } = this.props;
+        const { button, position } = this.props;
 
-        if (id) {
+        if (button) {
             this.setState({
-                isLoading: true
+                color: button.color,
+                title: button.title,
+                link: button.link,
+                id: button.id,
+                position: button.position
             });
-
-            axios.get(`/api/dashboard/buttons/${id}`).then(
-                ({ data: { title, link, color, id, position } }) => {
-                    this.setState({
-                        title,
-                        link,
-                        color,
-                        id,
-                        position,
-                        isLoading: false
-                    });
-                },
-                ({ response: { status } }) => {
-                    status == "404" &&
-                        this.props.history.replace({
-                            pathname: "/dashboard",
-                            state: {
-                                alert: {
-                                    type: "error",
-                                    msgs: [
-                                        "Button with this ID doesn't exists."
-                                    ]
-                                }
-                            }
-                        });
-                }
-            );
         } else if (position) {
             this.setState({
                 position
@@ -78,7 +53,7 @@ class ButtonForm extends Component {
         });
     }
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
         this.setState({
             isButtonLoading: true
@@ -92,13 +67,17 @@ class ButtonForm extends Component {
             position
         }))(this.state);
 
-        this.props.handleSubmit(button);
+        await this.props.handleSubmit(button);
+
+        this.setState({
+            isButtonLoading: false
+        });
     }
 
     render() {
-        const { colors, isLoading, isButtonLoading } = this.state;
+        const { colors, isButtonLoading } = this.state;
 
-        const { type } = this.props;
+        const { type, isLoading } = this.props;
 
         return (
             <div className="card">

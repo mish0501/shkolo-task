@@ -53,7 +53,7 @@ class ButtonController extends Controller
      */
     public function show(Request $request, $id)
     {
-        return Button::findOrFail($id)->first();
+        return Button::findOrFail($id);
     }
 
     /**
@@ -66,7 +66,7 @@ class ButtonController extends Controller
     {
         $validatedData = $request->validated();
 
-        $button = Button::findOrFail($id)->first();
+        $button = Button::findOrFail($id);
 
         $button->update($validatedData);
 
@@ -81,7 +81,8 @@ class ButtonController extends Controller
      */
     public function destroy($id)
     {
-        Button::findOrFail($id)->first()->delete();
+        $button = Button::findOrFail($id)->delete();
+
 
         return ['type' => 'success', 'msgs' => ['Button deleted succefully.']];
     }
