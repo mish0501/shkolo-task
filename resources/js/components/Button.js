@@ -18,7 +18,7 @@ class Button extends Component {
     handelDeleteClick() {
         const { id } = this.props.button;
 
-        axios.delete(`/api/dashboard/${id}`).then(
+        axios.delete(`/api/dashboard/buttons/${id}`).then(
             ({ data }) => {
                 if (data.type == "success") {
                     this.props.history.push({

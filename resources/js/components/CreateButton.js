@@ -24,7 +24,7 @@ class CreateButton extends Component {
 
     handleSubmit({ color, title, link, position }) {
         axios
-            .post("/api/dashboard", {
+            .post("/api/dashboard/buttons", {
                 color,
                 title,
                 link,

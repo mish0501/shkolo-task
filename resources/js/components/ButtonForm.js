@@ -36,7 +36,7 @@ class ButtonForm extends Component {
             });
 
             axios
-                .get(`/api/dashboard/${id}`)
+                .get(`/api/dashboard/buttons/${id}`)
                 .then(({ data: { title, link, color, id, position } }) => {
                     this.setState({
                         title,
@@ -103,9 +103,10 @@ class ButtonForm extends Component {
                         </div>
 
                         <div className="form-group">
-                            <label htmlFor="link">Link</label>
+                            <label htmlFor="link">Link (valid URL)</label>
                             <input
-                                type="text"
+                                type="url"
+                                pattern="https?://.+"
                                 className="form-control"
                                 id="link"
                                 name="link"

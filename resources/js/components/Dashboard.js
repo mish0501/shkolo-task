@@ -10,7 +10,7 @@ class Dashboard extends Component {
         super();
 
         this.fetchButtons = () => {
-            axios.get("/api/dashboard").then(response => {
+            axios.get("/api/dashboard/buttons").then(response => {
                 this.setState({
                     buttons: response.data
                 });

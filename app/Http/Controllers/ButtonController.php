@@ -38,7 +38,7 @@ class ButtonController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|max:255',
-            'link' => 'required',
+            'link' => 'required|url',
             'color' => 'required',
             'position' => 'required|unique:buttons,position'
         ]);
@@ -70,7 +70,7 @@ class ButtonController extends Controller
     {
         $validatedData = $request->validate([
             'title' => 'required|max:255',
-            'link' => 'required',
+            'link' => 'required|url',
             'color' => 'required',
             'position' => 'required'
         ]);

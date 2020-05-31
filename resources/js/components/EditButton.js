@@ -15,7 +15,7 @@ class EditButton extends Component {
 
     handleSubmit({ color, title, link, position, id }) {
         axios
-            .put(`/api/dashboard/${id}`, {
+            .put(`/api/dashboard/buttons/${id}`, {
                 color,
                 title,
                 link,

@@ -80229,7 +80229,7 @@ var Button = /*#__PURE__*/function (_Component) {
       var _this2 = this;
 
       var id = this.props.button.id;
-      axios["delete"]("/api/dashboard/".concat(id)).then(function (_ref) {
+      axios["delete"]("/api/dashboard/buttons/".concat(id)).then(function (_ref) {
         var data = _ref.data;
 
         if (data.type == "success") {
@@ -80380,7 +80380,7 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
         this.setState({
           isLoading: true
         });
-        axios.get("/api/dashboard/".concat(id)).then(function (_ref) {
+        axios.get("/api/dashboard/buttons/".concat(id)).then(function (_ref) {
           var _ref$data = _ref.data,
               title = _ref$data.title,
               link = _ref$data.link,
@@ -80462,8 +80462,9 @@ var ButtonForm = /*#__PURE__*/function (_Component) {
         className: "form-group"
       }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", {
         htmlFor: "link"
-      }, "Link"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
-        type: "text",
+      }, "Link (valid URL)"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "url",
+        pattern: "https?://.+",
         className: "form-control",
         id: "link",
         name: "link",
@@ -80657,7 +80658,7 @@ var CreateButton = /*#__PURE__*/function (_Component) {
           title = _ref2.title,
           link = _ref2.link,
           position = _ref2.position;
-      axios.post("/api/dashboard", {
+      axios.post("/api/dashboard/buttons", {
         color: color,
         title: title,
         link: link,
@@ -80766,7 +80767,7 @@ var Dashboard = /*#__PURE__*/function (_Component) {
     _this = _super.call(this);
 
     _this.fetchButtons = function () {
-      axios.get("/api/dashboard").then(function (response) {
+      axios.get("/api/dashboard/buttons").then(function (response) {
         _this.setState({
           buttons: response.data
         });
@@ -80885,7 +80886,7 @@ var EditButton = /*#__PURE__*/function (_Component) {
           link = _ref.link,
           position = _ref.position,
           id = _ref.id;
-      axios.put("/api/dashboard/".concat(id), {
+      axios.put("/api/dashboard/buttons/".concat(id), {
         color: color,
         title: title,
         link: link,
